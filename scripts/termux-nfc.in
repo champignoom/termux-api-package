@@ -3,19 +3,15 @@
 set -e -u
 
 show_usage() {
-    echo "Usage: termux-nfc subcommands... args..." 
+    echo "Usage: termux-nfc -" 
     echo ""
-    echo "Wrappers for all Android NFC APIs, except for get(), which is merged with connect() (see Example below)."
+    echo "Reads from stdin line by line, parse each line as JSON object specifying an NFC API, and execute it."
+    echo ""
+    echo 'Format: {"class": "<CLASSNAME>", "method": "<METHODNAME>", "args": [ARG1, ARG2, ...]}'
     echo ""
     echo "Byte array is supplied and returned in hexadecimal format, for example: 01234567DEADBEEF".
     echo ""
-    echo "Return values or exceptions are in JSON format."
-    echo ""
-    echo "During the NFC connection, the auxiliary NFC activity should be kept in the foreground, possibly as picture-in-picture."
-    echo ""
-    echo "Subcommands:"
-    echo "    quit"
-    echo "    ---"
+    echo "Class/Method/Args:"
     echo "    TagTechnology close"
     echo "    TagTechnology isConnected"
     echo "    TagTechnology getTag"
@@ -107,12 +103,10 @@ show_usage() {
     echo "    NdefFormatable formatReadOnly <hex-message>"
     echo ""
     echo "Example:"
-    echo "    termux-nfc IsoDep connect  # Discover the current tag that you believe to support IsoDep and connect to it"
-    echo "    termux-nfc IsoDep transceive 01020304  # Transceive data with the connected IsoDep tag"
-    echo "    termux-nfc IsoDep transceive deadbeef  # Keep the state and transceive more data"
-    echo "    termux-nfc TagTechnology close  # Close the current tag connection and clean the state"
-    echo "    termux-nfc quit  # Exit the auxiliary NFC activity"
-
+    echo '    {"class":"IsoDep", "method": "connect", "args": []}'
+    echo '    {"class":"IsoDep", "method": "transceive", "args": ["01020304"]}'
+    echo '    {"class":"IsoDep", "method": "transceive", "args": ["deadbeef"]}'
+    echo '    {"class":"TagTechnology", "method": "close", "args": []}'
 
     exit 0
 }
@@ -124,9 +118,4 @@ then
     exit 1
 fi
 
-api_args=()
-for ((i=1; i<=$#; ++i)); do
-  args+=("--es" "arg$i" "${!i}")
-done
-
-@TERMUX_PREFIX@/libexec/termux-api Nfc "${args[@]}"
+@TERMUX_PREFIX@/libexec/termux-api Nfc
