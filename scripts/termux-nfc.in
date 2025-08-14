@@ -7,7 +7,8 @@ show_usage() {
     echo ""
     echo "Reads from stdin line by line, parse each line as JSON object specifying an NFC API, and execute it."
     echo ""
-    echo 'Format: {"class": "<CLASSNAME>", "method": "<METHODNAME>", "args": [ARG1, ARG2, ...]}'
+    echo "Tag discovery: {"op": "discoverTag"}"
+    echo 'API Format: {"op": "api", "class": "<CLASSNAME>", "method": "<METHODNAME>", "args": [ARG1, ARG2, ...]}'
     echo ""
     echo "Byte array is supplied and returned in hexadecimal format, for example: 01234567DEADBEEF".
     echo ""
@@ -103,10 +104,15 @@ show_usage() {
     echo "    NdefFormatable formatReadOnly <hex-message>"
     echo ""
     echo "Example:"
-    echo '    {"class":"IsoDep", "method": "connect", "args": []}'
-    echo '    {"class":"IsoDep", "method": "transceive", "args": ["01020304"]}'
-    echo '    {"class":"IsoDep", "method": "transceive", "args": ["deadbeef"]}'
-    echo '    {"class":"TagTechnology", "method": "close", "args": []}'
+    echo '    {"op": "discoverTag"}'
+    echo '    {"op": "api", "class":"IsoDep", "method": "connect", "args": []}'
+    echo '    {"op": "api", "class":"IsoDep", "method": "transceive", "args": ["01020304"]}'
+    echo '    {"op": "api", "class":"IsoDep", "method": "transceive", "args": ["deadbeef"]}'
+    echo '    {"op": "api", "class":"TagTechnology", "method": "close", "args": []}'
+    echo '    {"op": "api", "class":"MifareClassic", "method": "connect", "args": []}'
+    echo '    {"op": "api", "class":"MifareClassic", "method": "authenticateSectorWithKeyA", "args": [0, "FFFFFFFFFFFFFFFF"]}'
+    echo '    {"op": "api", "class":"MifareClassic", "method": "readBlock", "args": [0]}'
+    echo '    {"op": "api", "class":"TagTechnology", "method": "close", "args": []}'
 
     exit 0
 }
