@@ -5,10 +5,10 @@ set -e -u
 show_usage() {
     echo "Usage: termux-nfc -" 
     echo ""
-    echo "Reads from stdin line by line, parse each line as JSON object specifying an NFC API, and execute it."
+    echo "Reads from stdin line by line, parse each line as JSON object specifying an NFC operation, and execute it."
     echo ""
     echo "Tag discovery: {"op": "discoverTag"}"
-    echo 'API Format: {"op": "api", "class": "<CLASSNAME>", "method": "<METHODNAME>", "args": [ARG1, ARG2, ...]}'
+    echo 'API: {"op": "api", "class": "<CLASSNAME>", "method": "<METHODNAME>", "args": [ARG1, ARG2, ...]}'
     echo ""
     echo "Byte array is supplied and returned in hexadecimal format, for example: 01234567DEADBEEF".
     echo ""
