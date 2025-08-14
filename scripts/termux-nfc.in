@@ -65,13 +65,13 @@ show_usage() {
     echo "    Ndef makeReadOnly"
     echo "    Ndef writeNdefMessage <hex-message>"
     echo "    ---"
-    echo "    MifareClassic authenticateSectorWithKeyA <sector_index> <key_hex>"
-    echo "    MifareClassic authenticateSectorWithKeyB <sector_index> <key_hex>"
+    echo "    MifareClassic authenticateSectorWithKeyA <sector-index> <hex-key>"
+    echo "    MifareClassic authenticateSectorWithKeyB <sector-index> <hex-key>"
     echo "    MifareClassic blockToSector <block-index>"
     echo "    MifareClassic connect"
     echo "    MifareClassic decrement <block-index> <value>"
     echo "    MifareClassic getBlockCount"
-    echo "    MifareClassic getBlockCountInSector <sector_index>"
+    echo "    MifareClassic getBlockCountInSector <sector-index>"
     echo "    MifareClassic getMaxTransceiveLength"
     echo "    MifareClassic getSectorCount"
     echo "    MifareClassic getSize"
@@ -80,7 +80,7 @@ show_usage() {
     echo "    MifareClassic increment <block-index> <value>"
     echo "    MifareClassic readBlock <block-index>"
     echo "    MifareClassic restore <block-index>"
-    echo "    MifareClassic sectorToBlock <sector_index>"
+    echo "    MifareClassic sectorToBlock <sector-index>"
     echo "    MifareClassic setTimeout <timeout>"
     echo "    MifareClassic transceive <hex-data>"
     echo "    MifareClassic transfer <block-index>"
@@ -117,7 +117,7 @@ show_usage() {
 }
 
 if [ $# -eq 0 ] || 
-   { [ $# -eq 1 ] && { [ "$1" = "-h" ] || [ "$1" = "--help" ] || [ "$1" = "help" ]; }; }
+   { [ $# -eq 1 ] && { [ "$1" != "-" ]; }; }
 then
     show_usage
     exit 1
