@@ -80,7 +80,7 @@ show_usage() {
     echo "    MifareClassic increment <block-index> <value>"
     echo "    MifareClassic readBlock <block-index>"
     echo "    MifareClassic restore <block-index>"
-    echo "    MifareClassic sectorToBlock <sector_index>" # Duplicate if blockToSector is preferred, pick one
+    echo "    MifareClassic sectorToBlock <sector_index>"
     echo "    MifareClassic setTimeout <timeout>"
     echo "    MifareClassic transceive <hex-data>"
     echo "    MifareClassic transfer <block-index>"
@@ -96,7 +96,7 @@ show_usage() {
     echo "    MifareUltralight writePage <page-offset> <hex-data>"
     echo "    ---"
     echo "    NfcBarcode connect"
-    echo "    NfcBarcode getBarcode" # Assuming this is a method for NfcBarcode
+    echo "    NfcBarcode getBarcode"
     echo "    NfcBarcode getType"
     echo "    ---"
     echo "    NdefFormatable connect"
